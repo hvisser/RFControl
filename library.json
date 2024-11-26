@@ -11,5 +11,8 @@
       "exclude": "simulate"
     },
     "frameworks": "arduino",
-    "platforms": "atmelavr"
+    "platforms": "atmelavr",
+    "build" : {
+      "srcFilter": ["+<*.h>", "+<*.cpp>", "-<simulate/*.cpp>"]
+    }
 }
