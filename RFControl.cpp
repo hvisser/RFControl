@@ -33,8 +33,8 @@ bool data1_ready = false;
 bool data2_ready = false;
 bool skip = false;
 bool new_duration = false;
-#ifdef ICACHE_RAM_ATTR
-void ICACHE_RAM_ATTR handleInterrupt();
+#ifdef IRAM_ATTR
+void IRAM_ATTR handleInterrupt();
 #else
 void handleInterrupt();
 #endif
@@ -287,8 +287,11 @@ void verification(int package) {
     break;
   }
 }
-
+#ifdef IRAM_ATTR
+void IRAM_ATTR handleInterrupt() {
+#else
 void handleInterrupt() {
+#endif 
   //hw_digitalWrite(9, HIGH);
   unsigned long currentTime = hw_micros();
   duration = (currentTime - lastTime) / PULSE_LENGTH_DIVIDER;
